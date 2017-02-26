@@ -16,13 +16,19 @@ public class TestAdmin {
 
     @Test
     public void testMakeClass() {
-        this.admin.createClass("Test", 2017, "Instructor", 15);
-        assertTrue(this.admin.classExists("Test", 2017));
+        this.admin.createClass("ECS", 2017, "Rogaway", 15);
+        assertTrue(this.admin.classExists("ECS", 2017));
     }
 
     @Test
     public void testMakeClass2() {
-        this.admin.createClass("Test", 2016, "Instructor", 15);
-        assertFalse(this.admin.classExists("Test", 2016));
+        this.admin.createClass("ECS", 2016, "Koehl", 15);
+        assertTrue(this.admin.classExists("ECS", 2016));
+    }
+
+    @Test
+    public void testMakeClass3() {
+        assertFalse(this.admin.classExists("ECS", 2015));
+
     }
 }

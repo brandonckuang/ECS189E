@@ -49,7 +49,8 @@ public class TestAdmin {
     @Test
     public void testMakeClass5() {
         this.admin.createClass("ECS15", 2017, "Instructor6", 0);
-        if((this.admin.getClassCapacity("ECS15", 2017)) <= 0) {
+        if((this.admin.getClassCapacity("ECS15", 2017)) <= 0 && this.admin.classExists("ECS15", 2017))
+        {
             fail("Zero/negative class capacity");
         }
     }
@@ -61,7 +62,11 @@ public class TestAdmin {
         this.admin.createClass("ECS1", 2017, "Instructor10", 15);
         this.admin.createClass("ECS2", 2017, "Instructor10", 15);
         this.admin.createClass("ECS3", 2017, "Instructor10", 15);
-        assertFalse("Professor already teaching two courses",this.admin.classExists("ECS3", 2017));
+        if( this.admin.classExists("ECS1", 2017) && this.admin.classExists("ECS2", 2017) &&
+                this.admin.classExists("ECS3", 2017)){
+            fail("Professor already teaching two courses");
+        }
+       // assertFalse("Professor already teaching two courses",this.admin.classExists("ECS3", 2017));
 
     }
 
@@ -97,7 +102,7 @@ public class TestAdmin {
         this.admin.createClass("ECS200", 2017, "Instructor200", 15);
         this.admin.createClass("ecs200", 2017, "Instructor200", 15);
         assertTrue(this.admin.classExists("ECS200", 2017));
-        assertFalse(this.admin.classExists("ecs200", 2017));
+        assertTrue(this.admin.classExists("ecs200", 2017));
 
     }
 
@@ -131,6 +136,12 @@ public class TestAdmin {
         assertNull(this.admin.getClassInstructor("SoFalse", 0));
     }
 
+    @Test
+    public void testGetClassInstructor4() {
+        this.admin.createClass("ECS5000", 2017, "Instructor5000", 15);
+        assertNull(this.admin.classExists("ECS5000", 0));
+    }
+
 
     @Test
     public void testGetCapacity(){
@@ -149,7 +160,6 @@ public class TestAdmin {
     public void testChangeCapacity() {
         this.admin.createClass("ECS13", 2017, "Instructor4", 15);
         this.admin.changeCapacity("ECS13", 2017, 16);
-        //ssertEquals(16, (double)(this.admin.getClassCapacity("ECS13", 2017)), 0);
         assertTrue(this.admin.getClassCapacity("ECS13", 2017) == 16);
     }
 
@@ -172,6 +182,7 @@ public class TestAdmin {
     }
 
     //Tests for duplicate classes being added
+    //fails
     @Test
     public void testUniqueClass() {
         this.admin.createClass("ECS123", 2017, "me", 15);

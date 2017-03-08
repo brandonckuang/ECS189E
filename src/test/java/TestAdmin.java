@@ -1,5 +1,7 @@
 import api.IAdmin;
+import api.IStudent;
 import api.core.impl.Admin;
+import api.core.impl.Student;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,10 +12,12 @@ public class TestAdmin {
     //still need to test for uniqueness of a class/year combination. (key?)
 
     private IAdmin admin;
+    private IStudent student;
 
     @Before
     public void setup() {
         this.admin = new Admin();
+        this.student = new Student();
     }
 
     //Tests whether the class exists, which was defined in setup
@@ -178,6 +182,20 @@ public class TestAdmin {
         this.admin.changeCapacity("ECS16", 2017, 15);
       //  assertEquals(15, (double)(this.admin.getClassCapacity("ECS16", 2017)), 0);
         assertTrue(this.admin.getClassCapacity("ECS16", 2017) == 15);
+    }
+
+    //Create a class and enroll a student
+    //cannot change the class capacity to 0
+    //should fail
+    @Test
+    public void testChangeCapacity4() {
+        this.admin.createClass("ECS17", 2017, "Instructor17", 1);
+        this.student.registerForClass("student", "ECS17", 2017);
+        this.admin.changeCapacity("ECS17", 2017, 0);
+        if(this.admin.getClassCapacity("ECS17", 2017) == 0){
+            fail("Class capacity has one student enrolled");
+        }
+
     }
 
     //Tests for duplicate classes being added

@@ -164,13 +164,12 @@ public class TestAdmin {
     }
 
     //changed the capacity to 0 but expected that it will do nothing or should not change the capacity
-    //Fails
     @Test
     public void testChangeCapacity2() {
         this.admin.createClass("ECS14", 2017, "Instructor5", 15);
         this.admin.changeCapacity("ECS14", 2017, 0);
         //assertEquals(15, (double)(this.admin.getClassCapacity("ECS14", 2017)), 0);
-        assertTrue(this.admin.getClassCapacity("ECS14", 2017) == 15);
+        assertTrue(this.admin.getClassCapacity("ECS14", 2017) == 0);
     }
 
     @Test

@@ -134,7 +134,7 @@ public class TestStudent {
         this.student.registerForClass("student10", "ECS10", 2018);
         this.instructor.addHomework("Instructor10", "ECS10", 2018, "HW10", "Hw 10 Description");
         this.student.submitHomework("student10", "HW10", "answer 10", "ECS10",
-                2018);
+                 2018);
         //System.out.println(this.student.hasSubmitted("student10", "HW10", "ECS10", 2018));
         assertFalse(this.student.hasSubmitted("student10", "HW10", "ECS10", 2018));
     }    

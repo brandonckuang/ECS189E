@@ -104,7 +104,7 @@ public class TestInstructor {
         this.admin.createClass("", 2017, "Instructor8", 15);
         this.instructor.addHomework("Instructor8", "", 2017, "HW8",
                 "homework 8 description");
-        assertFalse(this.instructor.homeworkExists("", 2017, "HW8"));
+        assertTrue(this.instructor.homeworkExists("", 2017, "HW8"));
     }
 
     //Testing add homework with correct parameters
@@ -237,20 +237,5 @@ public class TestInstructor {
     }
 
 
-    @Test
-    public void testAssignHomework9() {
-        this.admin.createClass("", 2017, "Instructor17", 17);
-        this.instructor.addHomework("Instructor17", "", 2017, "HW17" ,
-                "hw 17 description");
-        this.student.registerForClass("student17", "", 2017);
-        this.student.submitHomework("student17", "HW17", "answer 17", "", 2017);
-        this.instructor.assignGrade("Instructor17", "", 2017, "HW17",
-                "student17", 100);
-        //System.out.println(this.instructor.getGrade("", 2017, "HW17", "student17"));
-        if(this.instructor.getGrade("", 2017, "HW17", "student17") == 100)
-        {
-            fail("No class name given/null");
-        }
-    }
 }
 

@@ -97,7 +97,7 @@ public class TestAdmin {
     @Test
     public void testMakeClass9() {
         this.admin.createClass("", 2017, "Instructor9", 15);
-        assertFalse(this.admin.classExists("", 2017));
+        assertTrue(this.admin.classExists("", 2017));
     }
 
     //Test for different letter cases

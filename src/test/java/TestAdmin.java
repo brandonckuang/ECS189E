@@ -118,6 +118,14 @@ public class TestAdmin {
         assertFalse(this.admin.classExists("ECS1000", 0));
     }
 
+    //Tests for null instructor name, which is not part of the instructions
+    @Test
+    public void testMakeClass12() {
+        this.admin.createClass("ECS1234", 2017, "", 15);
+        System.out.println(this.admin.getClassInstructor("ECS1234", 2017));
+        assertTrue(this.admin.getClassInstructor("ECS1234", 2017).equals(""));
+    }
+
 
     //Tests whether a professor teaches a class, which should be true
 

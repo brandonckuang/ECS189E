@@ -98,7 +98,7 @@ public class TestInstructor {
     }
 
     //Adding hw to a null class name
-    //should fail in current testing
+    //should fail in current testing 
     @Test
     public void testAddHomework8() {
         this.admin.createClass("", 2017, "Instructor8", 15);

@@ -138,6 +138,13 @@ public class TestStudent {
                  2018);
         //System.out.println(this.student.hasSubmitted("student10", "HW10", "ECS10", 2018));
         assertFalse(this.student.hasSubmitted("student10", "HW10", "ECS10", 2018));
-    }    
+    }
+
+    @Test
+    public void testNullStudentName(){
+        this.admin.createClass("ECS1234", 2017, "I", 2);
+        this.student.registerForClass("", "ECS1234", 2017);
+        assertTrue(this.student.isRegisteredFor("", "ECS1234", 2017));
+    }
     
 }
